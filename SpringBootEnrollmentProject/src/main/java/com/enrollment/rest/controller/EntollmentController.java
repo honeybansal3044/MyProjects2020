@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.enrollment.dao.DependentRepository;
@@ -50,6 +52,28 @@ public class EntollmentController implements ErrorController {
 		List<Dependent> dependents = dependentRepo.findByEnrolleeId(id);
 
 		return new ResponseEntity<List<Dependent>>(dependents, HttpStatus.OK);
+	}
+
+	@PostMapping(value = "/enrollees")
+	public ResponseEntity<Enrollee> addEnrollee(@RequestBody Enrollee enrollee) {
+		try {
+			Enrollee tempEnrollee = enrolleeRepo.save(enrollee);
+			return new ResponseEntity<Enrollee>(tempEnrollee, HttpStatus.OK);
+		} catch (Exception e) {
+			throw new EnrollmentException(e.getLocalizedMessage());
+		}
+	}
+
+	@PostMapping(value = "/enrollees/{id}/dependents")
+	public ResponseEntity<Dependent> addDependent(@RequestBody Dependent dependent, @PathVariable long id) {
+		try {
+			Enrollee enrollee = enrolleeRepo.findOne(id);
+			dependent.setEnrollee(enrollee);
+			dependentRepo.save(dependent);
+			return new ResponseEntity<Dependent>(dependent, HttpStatus.OK);
+		} catch (Exception e) {
+			throw new EnrollmentException(e.getLocalizedMessage());
+		}
 	}
 
 	@GetMapping(value = PATH)

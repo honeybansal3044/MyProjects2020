@@ -59,4 +59,12 @@ public class Dependent {
 	public void setBirthDate(Date birthDate) {
 		this.birthDate = birthDate;
 	}
+
+	public Enrollee getEnrollee() {
+		return enrollee;
+	}
+
+	public void setEnrollee(Enrollee enrollee) {
+		this.enrollee = enrollee;
+	}
 }

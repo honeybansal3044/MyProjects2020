@@ -7,6 +7,9 @@ VALUES (2, parsedatetime('01-01-2001', 'dd-MM-yyyy'), 'James', false, '987654321
 INSERT INTO enrollee (Id, birth_date, full_name, is_active)
 VALUES (3, parsedatetime('01-01-2002', 'dd-MM-yyyy'), 'Smith', true);
 
+INSERT INTO enrollee (Id, birth_date, full_name, is_active)
+VALUES (4, parsedatetime('01-01-2003', 'dd-MM-yyyy'), 'Honey', true);
+
 INSERT INTO dependent(Id, birth_date, full_name, enrollee_id)
 VALUES (1, parsedatetime('01-01-2010', 'dd-MM-yyyy'), 'John Jr.', 1);
 

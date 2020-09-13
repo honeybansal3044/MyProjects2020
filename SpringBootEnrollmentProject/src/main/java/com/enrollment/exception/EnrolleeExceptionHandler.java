@@ -12,8 +12,8 @@ public class EnrolleeExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler({EnrollmentException.class})
 	public final ResponseEntity<ErrorResponse> handlerEnrolleeNotFound(RuntimeException ex) {
 		ErrorResponse error = new ErrorResponse();
-		error.setErrorCode(HttpStatus.NOT_FOUND.value());
+		error.setErrorCode(HttpStatus.BAD_REQUEST.value());
 		error.setMessage(ex.getMessage());
-		return new ResponseEntity<ErrorResponse>(error, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<ErrorResponse>(error, HttpStatus.BAD_REQUEST);
 	}
 }
