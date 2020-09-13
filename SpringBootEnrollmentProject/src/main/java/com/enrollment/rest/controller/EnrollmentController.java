@@ -22,7 +22,7 @@ import com.enrollment.model.Dependent;
 import com.enrollment.model.Enrollee;
 
 @RestController
-public class EntollmentController implements ErrorController {
+public class EnrollmentController implements ErrorController {
 
 	@Autowired
 	private EnrolleeRepository enrolleeRepo;
